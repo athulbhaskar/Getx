@@ -12,24 +12,11 @@ class WelcomeView extends GetView<WelcomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-          () => BasePage(
+    return BasePage(
         body: Container(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              Image.asset('assets/images/autovista_text.png'),
-              Expanded(
-                child: Image.asset(
-                  "assets/images/welcome.png",
-                  height: screenHeight * 0.5,
-                  fit: BoxFit.contain,
-                  alignment: Alignment.center,
-                ),
-              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.08,
               ),
@@ -39,7 +26,6 @@ class WelcomeView extends GetView<WelcomeController> {
             ],
           ),
         ),
-      ),
     );
   }
 }
