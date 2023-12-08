@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'base-page_controller.dart';
 
@@ -49,7 +48,8 @@ class BasePage extends GetView<BasePageController> {
             child: Stack(
               children: [
                 body,
-                  Positioned(
+                /*   Obx(() => controller.isPageLoading.value
+                    ? Positioned(
                         top: 0,
                         left: 0,
                         right: 0,
@@ -62,6 +62,7 @@ class BasePage extends GetView<BasePageController> {
                           ),
                         ),
                       )
+                    : const SizedBox())*/
               ],
             ),
           ),
