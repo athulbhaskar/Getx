@@ -1,7 +1,5 @@
-
-
 import 'package:flutter/cupertino.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:initialsetup/screens/welcome/welcome_controller.dart';
 
@@ -13,19 +11,23 @@ class WelcomeView extends GetView<WelcomeController> {
   @override
   Widget build(BuildContext context) {
     return BasePage(
-        body: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.08,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-            ],
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: InkWell(
+              onTap: () {
+                controller.buttonClick();
+              },
+              child: Image.asset("assets/images/logo.png",
+                  height: screenHeight * 0.1,
+                  fit: BoxFit.contain,
+                  alignment: Alignment.center),
+            ),
           ),
-        ),
+        ],
+      ),
     );
   }
 }

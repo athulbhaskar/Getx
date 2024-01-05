@@ -49,7 +49,7 @@ class BasePage extends GetView<BasePageController> {
             child: Stack(
               children: [
                 body,
-                  Positioned(
+               /*   Positioned(
                         top: 0,
                         left: 0,
                         right: 0,
@@ -61,7 +61,7 @@ class BasePage extends GetView<BasePageController> {
                             size: 80.0,
                           ),
                         ),
-                      )
+                      )*/
               ],
             ),
           ),

@@ -1,29 +1,37 @@
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:local_auth/local_auth.dart';
+
+import '../../utils/Routes.dart';
 
 class WelcomeController extends GetxController {
   // SharedPreferencesService? sharedPrefService;
-  var isLoggedIn = false.obs;
-  var isPageLoading = true.obs;
+
+  final LocalAuthentication _localAuthentication = LocalAuthentication();
+  bool isAuthenticated = false;
 
   @override
   Future<void> onInit() async {
     super.onInit();
-    // sharedPrefService = await SharedPreferencesService.instance;
-    //
-    // ///return false for first time user
-    // isLoggedIn.value =
-    //     sharedPrefService!.getBoolSession(SharedPrefStrings.isLoggedIn) ??
-    //         false;
-    //
-    // if (isLoggedIn.value) {
-    //   Get.offNamed(Routes.homePage);
-    // }else{
-    //   isPageLoading.value = false;
-    // }
+    try {
+      isAuthenticated = await _localAuthentication.authenticate(
+          localizedReason: 'Authenticate to access the app',
+          options: const AuthenticationOptions(
+              useErrorDialogs: true,
+              stickyAuth: true,
+              sensitiveTransaction: true,
+              biometricOnly: false));
+
+      if(isAuthenticated){
+        Get.toNamed(Routes.login);
+        print("Auth Completed");
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
-  buttonClick() {
-    // Get.toNamed(Routes.login);
+  void buttonClick() {
+    Get.toNamed(Routes.login);
   }
 }
