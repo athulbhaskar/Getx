@@ -1,29 +1,28 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:initialsetup/screens/Api/Repo/ApiRepo.dart';
+import 'package:initialsetup/screens/base_page/base-page_controller.dart';
 
 class WelcomeController extends GetxController {
-  // SharedPreferencesService? sharedPrefService;
-  var isLoggedIn = false.obs;
   var isPageLoading = true.obs;
+  // Observable list to track data
+  var items = <String>[].obs;
+  var baseController = Get.find<BasePageController>();
 
   @override
   Future<void> onInit() async {
     super.onInit();
-    // sharedPrefService = await SharedPreferencesService.instance;
-    //
-    // ///return false for first time user
-    // isLoggedIn.value =
-    //     sharedPrefService!.getBoolSession(SharedPrefStrings.isLoggedIn) ??
-    //         false;
-    //
-    // if (isLoggedIn.value) {
-    //   Get.offNamed(Routes.homePage);
-    // }else{
-    //   isPageLoading.value = false;
-    // }
+    var isPageLoading = false.obs;
+    debugPrint('onInitWelcomeController');
   }
 
-  buttonClick() {
-    // Get.toNamed(Routes.login);
+  Future<void> onRefresh() async  {
+
+  }
+
+  Future<void> fetchItems() async{
+    var items= await ApiRepo.getAllCardDetails()
+
   }
 }

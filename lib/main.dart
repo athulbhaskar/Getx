@@ -21,16 +21,16 @@ class MyApp extends StatelessWidget {
     ]);
 
     return GetMaterialApp(
-      title: 'Initial Setup GetX',
-      theme: ThemeData(
-          // primarySwatch: primarySwatchColor,
-          // scaffoldBackgroundColor: AppColors.pageBackground
-      ),
-      debugShowCheckedModeBanner: false,///Remove Debug Banner
+      debugShowCheckedModeBanner: false,
+
+      ///Remove Debug Banner
       ///For getx Data Routes
-      initialRoute: Routes.welcome,
+      initialRoute: Routes.initial,
+
+      ///For Pages visible in routes
       getPages: appPages,
 
+      ///Base binding
       initialBinding: BaseBinding(),
     );
   }
