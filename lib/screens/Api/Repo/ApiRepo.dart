@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../../../utils/utilss/strings.dart';
 import '../../Data/FlagDetailsModel.dart';
@@ -8,8 +9,7 @@ import '../app_url.dart';
 import '../connectivity_service.dart';
 
 class ApiRepo {
-  Future<List<FlagResponse?>> getAllCardDetails(
-      data, offset, searchText) async {
+   Future<List<FlagResponse?>?> getAllCardDetails() async {
     if (await ConnectivityService.isConnected()) {
       try {
         Response response = await apiUtils.get(
@@ -18,8 +18,9 @@ class ApiRepo {
           List<FlagResponse> data = flagResponseFromJson(response.toString());
           return data;
         } else {
-          return FlagResponse.withError(
-              response.statusCode!.toString(), response.statusMessage!);
+          debugPrint('TAG:: FlagResponse ::');
+          // return FlagResponse.withError(
+          //     response.statusCode!.toString(), response.statusMessage!);FF
         }
       } on DioException catch (e) {
         String errorMessage;
@@ -27,18 +28,17 @@ class ApiRepo {
           // handle server error
           if (e.response!.data != null) {
             errorMessage = e.response!.data['message'];
-            return FlagResponse.withError(
-                e.response!.statusCode!, errorMessage);
+            // return FlagResponse.withError(
+            //     e.response!.statusCode!, errorMessage);
           }
         } else {
-          return FlagResponse.withError(
-              e.response!.statusCode!, AppStrings.internalError);
+          // return FlagResponse.withError(
+          //     e.response!.statusCode!, AppStrings.internalError);
         }
       }
     } else {
-      return FlagResponse.withError(
-          noInternetCode, AppStrings.noInternetMessage);
+      // return FlagResponse.withError(
+      //     noInternetCode, AppStrings.noInternetMessage);
     }
-    return null;
   }
 }
