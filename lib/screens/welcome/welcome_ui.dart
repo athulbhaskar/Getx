@@ -14,18 +14,43 @@ class WelcomeView extends GetView<WelcomeController> {
     return BasePage(
       body: Obx(
         () => RefreshIndicator(
-            onRefresh:controller.onRefresh,
+            onRefresh: controller.onRefresh,
             child: ListView.builder(
-              itemCount: controller.items.length,
+              itemCount: controller.flagList.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(controller.items[index]),
+                return Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Image.network(
+                          controller.flagList.value[index]!.flagPng.toString(),
+                          height: 100,
+                          width: 100,
+                        ),
+                      ),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(controller.flagList.value[index]!.name
+                              .toString()),
+                          Text(controller.flagList.value[index]!.subregion
+                              .toString()),
+                        ],
+                      )
+
+                      // Text(controller.flagList.value[index]!.name.toString()),
+                      // Text(controller.flagList.value[index]!.subregion
+                      //     .toString()),
+                    ],
+                  ),
                 );
               },
             )),
       ),
     );
   }
-
-
 }

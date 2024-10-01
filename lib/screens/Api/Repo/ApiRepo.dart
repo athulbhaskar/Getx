@@ -1,26 +1,25 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/utilss/strings.dart';
 import '../../Data/FlagDetailsModel.dart';
-import '../api_params.dart';
 import '../api_utils.dart';
 import '../app_url.dart';
 import '../connectivity_service.dart';
 
 class ApiRepo {
-   Future<List<FlagResponse?>?> getAllCardDetails() async {
+   Future<List<FlagResponse?>> getAllCardDetails() async {
     if (await ConnectivityService.isConnected()) {
+      var flagList = <FlagResponse>[];
       try {
         Response response = await apiUtils.get(
             url: "${AppUrl.baseUrl}${AppUrl.getAllFlagGetails}");
         if (response.statusCode == 200) {
-          List<FlagResponse> data = flagResponseFromJson(response.toString());
-          return data;
+          flagList = flagResponseFromJson(response.toString());
+          return flagList;
         } else {
           debugPrint('TAG:: FlagResponse ::');
-          // return FlagResponse.withError(
-          //     response.statusCode!.toString(), response.statusMessage!);FF
+          debugPrint('TAG:: FlagResponse:: Failed with status code: ${response.statusCode}');
+          return <FlagResponse?>[];
         }
       } on DioException catch (e) {
         String errorMessage;
@@ -28,17 +27,19 @@ class ApiRepo {
           // handle server error
           if (e.response!.data != null) {
             errorMessage = e.response!.data['message'];
-            // return FlagResponse.withError(
-            //     e.response!.statusCode!, errorMessage);
+            debugPrint('TAG:: FlagResponse:: Failed with status code: $errorMessage');
+            return <FlagResponse?>[];
           }
         } else {
-          // return FlagResponse.withError(
-          //     e.response!.statusCode!, AppStrings.internalError);
+          // Handle any other exceptions
+          debugPrint('TAG:: Exception:: ${e.toString()}');
+          return <FlagResponse?>[];
         }
       }
+      return <FlagResponse?>[];
     } else {
-      // return FlagResponse.withError(
-      //     noInternetCode, AppStrings.noInternetMessage);
+      debugPrint('TAG:: No internet connection');
+      return <FlagResponse?>[];
     }
   }
 }
