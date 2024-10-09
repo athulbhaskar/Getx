@@ -16,7 +16,7 @@ class FlagResponse {
   });
 
   factory FlagResponse.fromJson(Map<String, dynamic> json) => FlagResponse(
-    flagPng: json["flagPNG"],
+    flagPng: json["flagPng"],
     name: json["name"],
     subregion: json["subregion"],
   );
