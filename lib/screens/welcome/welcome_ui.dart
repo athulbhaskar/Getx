@@ -25,17 +25,19 @@ class WelcomeView extends GetView<WelcomeController> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Center(
-                        child:
-                        Image.network(
+                        child: Image.network(
                           controller.flagList1.value[index]!.flagPng.toString(),
                           height: 100,
                           width: 100,
                           errorBuilder: (context, error, stackTrace) {
-                            return Image.asset('assets/images.jpeg');
+                            return Image.asset(
+                              'assets/images.jpeg',
+                              width: 100,
+                              height: 100,
+                            );
                           },
                         ),
                       ),
-
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,

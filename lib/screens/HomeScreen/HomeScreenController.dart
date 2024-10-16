@@ -13,7 +13,7 @@ import '../Data/FlagDetailsModel.dart';
 import '../Database/DatabaseHelper.dart';
 import '../base_page/base-page_controller.dart';
 
-class WelcomeController extends GetxController {
+class Homescreencontroller extends GetxController {
   var isPageLoading = true.obs;
   // Observable list to track data
   var items = <String>[].obs;

@@ -34,6 +34,8 @@ class AppStrings {
   static var make = "Make";
   static var model = "Model";
   static var series = "Trim/Series";
+  static var homeBottomMenuKey="";
+  static var myTeamsBottomMenuKey="";
 
   static var backText = "Back";
   static var retakeText = "Retake";
@@ -69,6 +71,9 @@ class AppStrings {
   static var getStartedText = "Get Started";
   static var reportTitle = "Autovista AI Report";
   static var reportsTitle = "Autovista AI Reports";
+
+  static var homePageOne = "Home One";
+  static var homePageTwo = "Home Two";
 
   static var welcomeText = "AutoVista, Revolutionary AI-driven vehicle damage assessment mobile app.";
 
