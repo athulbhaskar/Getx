@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:initialsetup/screens/HomeScreen/HomeScreenController.dart';
@@ -20,7 +21,7 @@ final bottomTabItemsList = [
 String selectedTabBarItem = "";
 
 class HomeScreenui extends GetView<Homescreencontroller> {
-  HomeScreenui({Key? key}) : super(key: key);
+  const HomeScreenui({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +30,24 @@ class HomeScreenui extends GetView<Homescreencontroller> {
 
   Widget _getMyWidget() {
     return PopScope(
-      onPopInvoked: (didPop) {},
+      onPopInvoked: (didPop)async {
+        if (didPop) {
+          SystemNavigator.pop();
+          return;
+        }
+      },
       child: BasePage(
           bottomNavigationBar: bottomAppBarWidget,
           body: IndexedStack(
             children: [
               ValueListenableBuilder(
                 valueListenable: changedValueNotifier,
-                builder: (context, value, child) {return Container();},
+                builder: (context, value, child) {
+                  return Obx(() {
+                    return Container();
+
+                  });
+                },
               )
             ],
           )),

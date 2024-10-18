@@ -25,7 +25,7 @@ final List<GetPage> appPages = [
       binding: WelcomeBinding()),
   GetPage(
       name: Routes.homescreen,
-      page: () => HomeScreenui(),
+      page: () => const HomeScreenui(),
       binding: Homescreenbinder()),
 
 
