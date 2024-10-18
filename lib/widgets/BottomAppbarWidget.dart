@@ -7,9 +7,11 @@ import '../screens/HomeScreen/HomeScreenui.dart';
 import '../utils/utilss/colors.dart';
 import '../utils/utilss/strings.dart';
 
+final BottomAppBarController bottomAppBarController =
+Get.put(BottomAppBarController());
+
 class BottomAppBarController extends GetxController {
   var selectedValueOnBottomAppBar = "".obs;
-
   @override
   void onInit() {
     super.onInit();

@@ -10,7 +10,6 @@ import '../../widgets/BottomAppbarWidget.dart';
 import '../Api/connectivity_service.dart';
 import '../base_page/base-page_ui.dart';
 
-
 const List<Icon> bottomTabBarItems = [];
 BottomAppBarWidget bottomAppBarWidget = const BottomAppBarWidget();
 
@@ -19,6 +18,7 @@ final bottomTabItemsList = [
   AppStrings.homePageTwo,
 ];
 String selectedTabBarItem = "";
+
 class HomeScreenui extends GetView<Homescreencontroller> {
   HomeScreenui({Key? key}) : super(key: key);
 
@@ -33,9 +33,12 @@ class HomeScreenui extends GetView<Homescreencontroller> {
       child: BasePage(
           bottomNavigationBar: bottomAppBarWidget,
           body: IndexedStack(
-            children: [ ValueListenableBuilder(valueListenable: changedValueNotifier, builder: (context, value, child) {
-
-            },) ],
+            children: [
+              ValueListenableBuilder(
+                valueListenable: changedValueNotifier,
+                builder: (context, value, child) {return Container();},
+              )
+            ],
           )),
     );
   }
